@@ -25,6 +25,10 @@ export default class Customer {
         return this._rewardPoints;
     }
 
+    get address(): Address {
+        return this._address;
+    }
+
     addRewardPoints(points: number) {
         this._rewardPoints += points;
     }
@@ -42,7 +46,7 @@ export default class Customer {
         return this._active;
     }
 
-    active() {
+    activate() {
         if (this._address === undefined) throw new Error("Address is required to activate a customer");
 
         this._active = true;

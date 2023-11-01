@@ -33,4 +33,40 @@ describe("Order unit tests", () => {
             "Quantity must be greater than zero"
         );
     });
+
+    it("Should add items", () => {
+        const item1 = new OrderItem("1", "Item 1", 10, 1, "1");
+        const item2 = new OrderItem("2", "Item 2", 20, 2, "2");
+
+        const order = new Order("1", "123", [item1, item2]);
+
+        const item3 = new OrderItem("3", "Item 3", 30, 5, "3");
+        order.addItem(item3);
+
+        expect(order.items).toStrictEqual([item1, item2, item3]);
+
+        const item4 = new OrderItem("4", "Item 4", 40, 6, "4");
+        order.addItem(item4);
+
+        expect(order.items).toStrictEqual([item1, item2, item3, item4]);
+    });
+
+    it("Should remove items", () => {
+        const item1 = new OrderItem("1", "Item 1", 10, 1, "1");
+        const item2 = new OrderItem("2", "Item 2", 20, 2, "2");
+
+        const order = new Order("1", "123", [item1, item2]);
+        order.removeItem(item1);
+
+        expect(order.items).toStrictEqual([item2]);
+    });
+
+    it("Sould throw an error when trying to remove an item that does not exist", () => {
+        const item1 = new OrderItem("1", "Item 1", 10, 1, "1");
+        const item2 = new OrderItem("2", "Item 2", 20, 2, "2");
+
+        const order = new Order("1", "123", [item1]);
+
+        expect(() => order.removeItem(item2)).toThrowError("Item not found");
+    });
 });

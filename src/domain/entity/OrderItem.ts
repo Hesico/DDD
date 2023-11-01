@@ -18,8 +18,28 @@ export default class OrderItem {
         return this._price;
     }
 
+    get id(): string {
+        return this._id;
+    }
+
+    get name(): string {
+        return this._name;
+    }
+
+    get quantity(): number {
+        return this._quantity;
+    }
+
+    get productId(): string {
+        return this._productId;
+    }
+
     orderItemTotal(): number {
         return this._price * this._quantity;
+    }
+
+    applyDiscount(discount: number) {
+        this._price -= discount;
     }
 
     validate() {

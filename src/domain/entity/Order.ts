@@ -13,6 +13,34 @@ export default class Order {
         this.validate();
     }
 
+    get id() {
+        return this._id;
+    }
+
+    get customerId() {
+        return this._customerId;
+    }
+
+    get items() {
+        return this._items;
+    }
+
+    addItem(item: OrderItem) {
+        if (this._items.some((i) => i.id === item.id)) {
+            throw new Error("Duplicated item");
+        }
+
+        this._items.push(item);
+    }
+
+    removeItem(item: OrderItem) {
+        const itemIndex = this._items.findIndex((i) => i.id === item.id);
+
+        if (itemIndex < 0) throw new Error("Item not found");
+
+        this._items.splice(itemIndex, 1);
+    }
+
     total() {
         return this._items.reduce((total, item) => total + item.orderItemTotal(), 0);
     }

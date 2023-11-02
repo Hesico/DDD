@@ -33,6 +33,7 @@ export default class OrderRepository implements OrderRepositoryInterface {
                 where: { order_id: entity.id },
                 transaction: t,
             });
+
             const items = entity.items.map((item) => ({
                 id: item.id,
                 name: item.name,

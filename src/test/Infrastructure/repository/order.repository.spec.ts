@@ -1,16 +1,16 @@
 import { Sequelize } from "sequelize-typescript";
-import OrderModel from "../../../infrastructure/db/sequelize/model/order.model";
-import CustomerModel from "../../../infrastructure/db/sequelize/model/customer.model";
-import OrderItemModel from "../../../infrastructure/db/sequelize/model/order-item.model";
-import ProductModel from "../../../infrastructure/db/sequelize/model/product.model";
-import Customer from "../../../domain/entity/Customer";
-import Address from "../../../domain/entity/Addres";
-import CustomerRepository from "../../../infrastructure/repository/customer.repository";
-import OrderItem from "../../../domain/entity/OrderItem";
-import ProductRepository from "../../../infrastructure/repository/product.repository";
-import Product from "../../../domain/entity/Product";
-import Order from "../../../domain/entity/Order";
-import OrderRepository from "../../../infrastructure/repository/order.repository";
+import OrderModel from "../../../infrastructure/checkout/repository/sequelize/order.model";
+import CustomerModel from "../../../infrastructure/costumer/repository/sequelize/customer.model";
+import OrderItemModel from "../../../infrastructure/checkout/repository/sequelize/order-item.model";
+import ProductModel from "../../../infrastructure/product/repository/sequelize/product.model";
+import Customer from "../../../domain/costumer/entity/Customer";
+import Address from "../../../domain/costumer/value-object/Addres";
+import CustomerRepository from "../../../infrastructure/costumer/repository/sequelize/customer.repository";
+import OrderItem from "../../../domain/checkout/entity/OrderItem";
+import ProductRepository from "../../../infrastructure/product/repository/sequelize/product.repository";
+import Product from "../../../domain/product/entity/Product";
+import Order from "../../../domain/checkout/entity/Order";
+import OrderRepository from "../../../infrastructure/checkout/repository/sequelize/order.repository";
 
 describe("Order repository unit tests", () => {
     let sequelize: Sequelize;

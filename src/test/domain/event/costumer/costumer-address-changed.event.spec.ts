@@ -1,14 +1,15 @@
-import Address from "../../../../domain/entity/Addres";
-import Customer from "../../../../domain/entity/Customer";
-import EventDispatcher from "../../../../domain/event/@shared/event-dispatcher";
-import CostumerAddressChangedEvent from "../../../../domain/event/customer/costumer-address-changed.event";
-import EnviaConsoleLogHandler from "../../../../domain/event/customer/handler/envia-console-log.handler";
+import Address from "../../../../domain/costumer/value-object/Addres";
+import Customer from "../../../../domain/costumer/entity/Customer";
+import EventDispatcher from "../../../../domain/@shared/event/event-dispatcher";
+import CostumerAddressChangedEvent from "../../../../domain/costumer/event/costumer-address-changed.event";
+import EnviaConsoleLogHandler from "../../../../domain/costumer/event/handler/envia-console-log.handler";
 
 describe("Costumer address changed event unit tests", () => {
     it("Should log when costumer address is changed", () => {
-        console.log = jest.fn();
         const eventDispatcher = new EventDispatcher();
         const eventHandler = new EnviaConsoleLogHandler();
+        const spyEventHandler = jest.spyOn(eventHandler, "handle");
+        const spyConsoleLog = jest.spyOn(console, "log");
 
         eventDispatcher.register("CostumerAddressChangedEvent", eventHandler);
 
@@ -30,8 +31,9 @@ describe("Costumer address changed event unit tests", () => {
 
         eventDispatcher.notify(costumerCreatedEvent);
 
-        expect(console.log).toHaveBeenCalledWith(
-            `Endereço do cliente: ${costumer.id}, ${costumer.name} alterado para: ${costumer.address.toString()}`
+        expect(spyEventHandler).toHaveBeenCalled();
+        expect(spyConsoleLog).toHaveBeenCalledWith(
+            `Endereço do cliente: ${costumer.id}, ${costumer.name} alterado para: ${address.toString()}`
         );
     });
 });
